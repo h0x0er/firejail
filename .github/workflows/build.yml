@@ -13,7 +13,6 @@ jobs:
     - name: Harden Runner
       uses: step-security/harden-runner@rc
       with:
-        disable-sudo: true
         egress-policy: block
         allowed-endpoints: >
           azure.archive.ubuntu.com:80
