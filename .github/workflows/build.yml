@@ -1,28 +1,7 @@
 name: Build CI
 
 on:
-  push:
-    branches: [ master ]
-    paths-ignore:
-      - .git-blame-ignore-revs
-      - .gitignore
-      - CONTRIBUTING.md
-      - COPYING
-      - README
-      - README.md
-      - RELNOTES
-      - SECURITY.md
-  pull_request:
-    branches: [ master ]
-    paths-ignore:
-      - .git-blame-ignore-revs
-      - .gitignore
-      - CONTRIBUTING.md
-      - COPYING
-      - README
-      - README.md
-      - RELNOTES
-      - SECURITY.md
+  workflow_dispatch:
 
 permissions:  # added using https://github.com/step-security/secure-workflows
   contents: read
@@ -32,9 +11,18 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: Harden Runner
-      uses: step-security/harden-runner@2e205a28d0e1da00c5f53b161f4067b052c61f34
+      uses: step-security/harden-runner@rc
       with:
-        egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+        disable-sudo: true
+        egress-policy: block
+        allowed-endpoints: >
+          azure.archive.ubuntu.com:80
+          debian.org:80
+          github.com:443
+          packages.microsoft.com:443
+          ppa.launchpadcontent.net:443
+          www.debian.org:443
+          yahoo.com:1025
 
     - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
     - name: update package information
