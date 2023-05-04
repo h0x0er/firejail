@@ -15,10 +15,10 @@ jobs:
       with:
         egress-policy: block
         allowed-endpoints: >
-          azure.archive.ubuntu.com:80
+          *.ubuntu.com:80
           debian.org:80
           github.com:443
-          packages.microsoft.com:443
+          *.microsoft.com:443
           ppa.launchpadcontent.net:443
           www.debian.org:443
           yahoo.com:1025
