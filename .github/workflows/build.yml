@@ -11,17 +11,17 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: Harden Runner
-      uses: step-security/harden-runner@rc
+      uses: h0x0er/harden-runner@mitm-int
       with:
-        egress-policy: block
-        allowed-endpoints: >
-          *.ubuntu.com:80
-          debian.org:80
-          github.com:443
-          *.microsoft.com:443
-          ppa.launchpadcontent.net:443
-          www.debian.org:443
-          yahoo.com:1025
+        egress-policy: audit
+        # allowed-endpoints: >
+        #   *.ubuntu.com:80
+        #   debian.org:80
+        #   github.com:443
+        #   *.microsoft.com:443
+        #   ppa.launchpadcontent.net:443
+        #   www.debian.org:443
+        #   yahoo.com:1025
 
     - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
     - name: update package information
